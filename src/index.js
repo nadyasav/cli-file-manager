@@ -1,8 +1,10 @@
 import readline from 'node:readline/promises';
-import { INVALID_INPUT } from './constants.js';
+import { INVALID_INPUT, COMMANDS } from './constants.js';
 import { parseUsernameArg } from './services/parseUsernameArg.js';
 import { printCurrentDir } from './services/utils.js';
 import { up } from './services/up.js';
+import { cdHandler } from './services/cdHandler.js';
+import { lsHandler } from './services/lsHandler.js';
 
 function start() {
   const username = parseUsernameArg();
@@ -18,15 +20,26 @@ function start() {
     output: process.stdout,
   });
 
-  rl.on('line', (input) => {
-    const inputValue = input.trim();
+  rl.on('line', async (input) => {
+    const [command, ...args] = input.trim().split(' ');
+    const [arg1, arg2] = args;
 
-    switch (inputValue) {
-      case '.exit':
+    switch (command) {
+      case COMMANDS.EXIT:
         exit();
         break;
-      case 'up':
+      case COMMANDS.UP:
         up();
+        break;
+      case COMMANDS.CD:
+        if (arg1) {
+          cdHandler(arg1);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
+      case COMMANDS.LS:
+        await lsHandler();
         break;
       default:
         console.log(INVALID_INPUT);
