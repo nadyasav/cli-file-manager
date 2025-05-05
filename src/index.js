@@ -7,6 +7,8 @@ import { cdHandler } from './services/cdHandler.js';
 import { lsHandler } from './services/lsHandler.js';
 import { createFile } from './services/createFile.js';
 import { createDir } from './services/createDir.js';
+import { removeFile } from './services/removeFile.js';
+import { renameFile } from './services/renameFile.js';
 
 function start() {
   const username = parseUsernameArg();
@@ -53,6 +55,20 @@ function start() {
       case COMMANDS.MKDIR:
         if (arg1) {
           await createDir(arg1);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
+      case COMMANDS.RM:
+        if (arg1) {
+          await removeFile(arg1);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
+      case COMMANDS.RN:
+        if (arg1 && arg2) {
+          await renameFile(arg1, arg2);
         } else {
           console.log(INVALID_INPUT);
         }
