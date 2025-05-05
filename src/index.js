@@ -5,6 +5,8 @@ import { printCurrentDir } from './services/utils.js';
 import { up } from './services/up.js';
 import { cdHandler } from './services/cdHandler.js';
 import { lsHandler } from './services/lsHandler.js';
+import { createFile } from './services/createFile.js';
+import { createDir } from './services/createDir.js';
 
 function start() {
   const username = parseUsernameArg();
@@ -40,6 +42,20 @@ function start() {
         break;
       case COMMANDS.LS:
         await lsHandler();
+        break;
+      case COMMANDS.ADD:
+        if (arg1) {
+          await createFile(arg1);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
+      case COMMANDS.MKDIR:
+        if (arg1) {
+          await createDir(arg1);
+        } else {
+          console.log(INVALID_INPUT);
+        }
         break;
       default:
         console.log(INVALID_INPUT);

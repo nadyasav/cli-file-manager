@@ -5,5 +5,9 @@ export const COMMANDS = {
   UP: 'up',
   EXIT: '.exit',
   CD: 'cd',
-  LS: 'ls'
+  LS: 'ls',
+  ADD: 'add',
+  MKDIR: 'mkdir',
+  RN: 'rn',
+  RM: 'rm'
 };
