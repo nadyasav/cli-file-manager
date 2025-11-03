@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { printCurrentDir, printFailedMsg } from './utils.js';
+import { printFailedMsg } from './utils.js';
 
 export function up() {
   try {
@@ -10,8 +10,6 @@ export function up() {
       const parentDir = path.dirname(currentDir);
       process.chdir(parentDir);
     }
-
-    printCurrentDir();
   } catch {
     printFailedMsg();
   }

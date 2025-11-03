@@ -14,5 +14,6 @@ export const COMMANDS = {
   CP: 'cp',
   MV: 'mv',
   COMPRESS: 'compress',
-  DECOMPRESS: 'decompress'
+  DECOMPRESS: 'decompress',
+  HASH: 'hash'
 };

@@ -10,8 +10,12 @@ export async function readFile(filePath) {
 
     const writeStream = new Writable({
       write(chunk, _, callback) {
-          process.stdout.write(chunk);
-          callback();
+        process.stdout.write(chunk);
+        callback();
+      },
+      final(callback) {
+        process.stdout.write('\n');
+        callback();
       }
     });
 

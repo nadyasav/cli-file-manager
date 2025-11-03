@@ -13,6 +13,7 @@ import { readFile } from './services/readFile.js';
 import { copyFile } from './services/copyFile.js';
 import { moveFile } from './services/moveFile.js';
 import { compressFile, decompressFile } from './services/compress.js';
+import { calculateHash } from './services/hash.js';
 
 function start() {
   const username = parseUsernameArg();
@@ -112,10 +113,19 @@ function start() {
           console.log(INVALID_INPUT);
         }
         break;
+      case COMMANDS.HASH:
+        if (arg1) {
+          await calculateHash(arg1);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
       default:
         console.log(INVALID_INPUT);
         break;
     }
+
+    printCurrentDir();
   });
 
   rl.on('SIGINT', () => {
