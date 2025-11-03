@@ -9,5 +9,10 @@ export const COMMANDS = {
   ADD: 'add',
   MKDIR: 'mkdir',
   RN: 'rn',
-  RM: 'rm'
+  RM: 'rm',
+  CAT: 'cat',
+  CP: 'cp',
+  MV: 'mv',
+  COMPRESS: 'compress',
+  DECOMPRESS: 'decompress'
 };

@@ -9,6 +9,10 @@ import { createFile } from './services/createFile.js';
 import { createDir } from './services/createDir.js';
 import { removeFile } from './services/removeFile.js';
 import { renameFile } from './services/renameFile.js';
+import { readFile } from './services/readFile.js';
+import { copyFile } from './services/copyFile.js';
+import { moveFile } from './services/moveFile.js';
+import { compressFile, decompressFile } from './services/compress.js';
 
 function start() {
   const username = parseUsernameArg();
@@ -52,6 +56,27 @@ function start() {
           console.log(INVALID_INPUT);
         }
         break;
+      case COMMANDS.CAT:
+        if (arg1) {
+          await readFile(arg1);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
+      case COMMANDS.CP:
+        if (arg1 && arg2) {
+          await copyFile(arg1, arg2);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
+      case COMMANDS.MV:
+        if (arg1 && arg2) {
+          await moveFile(arg1, arg2);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
       case COMMANDS.MKDIR:
         if (arg1) {
           await createDir(arg1);
@@ -69,6 +94,20 @@ function start() {
       case COMMANDS.RN:
         if (arg1 && arg2) {
           await renameFile(arg1, arg2);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
+      case COMMANDS.COMPRESS:
+        if (arg1 && arg2) {
+          await compressFile(arg1, arg2);
+        } else {
+          console.log(INVALID_INPUT);
+        }
+        break;
+      case COMMANDS.DECOMPRESS:
+        if (arg1 && arg2) {
+          await decompressFile(arg1, arg2);
         } else {
           console.log(INVALID_INPUT);
         }
