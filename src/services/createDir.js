@@ -3,7 +3,7 @@ import { printFailedMsg } from "./utils.js";
 
 export async function createDir(dirName) {
   try {
-    await fs.mkdir(dirName, { recursive: true, errorOnExist: true, force: false });
+    await fs.mkdir(dirName, { errorOnExist: true });
   } catch {
     printFailedMsg();
   }
